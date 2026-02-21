@@ -2,6 +2,9 @@ package com.juyel.blackrock.challenge.computation.returns.engine;
 
 import com.juyel.blackrock.challenge.api.dto.ReturnsCalculationRequest;
 import com.juyel.blackrock.challenge.api.dto.TransactionResponse;
+import com.juyel.blackrock.challenge.computation.returns.calculator.IndexFundReturnCalculator;
+import com.juyel.blackrock.challenge.computation.returns.calculator.InvestmentReturnCalculator;
+import com.juyel.blackrock.challenge.computation.returns.calculator.NpsReturnCalculator;
 import com.juyel.blackrock.challenge.computation.returns.model.PeriodReturns;
 import com.juyel.blackrock.challenge.computation.returns.model.ReturnsCalculationResponse;
 import com.juyel.blackrock.challenge.computation.returns.strategy.InvestmentReturnsStrategy;
@@ -20,9 +23,20 @@ public class ReturnsCalculationEngine {
     private final TaxComputationEngine taxEngine;
     private final InflationAdjustmentEngine inflationEngine;
 
-    public ReturnsCalculationResponse calculate(
+    private final NpsReturnCalculator npsCalculator;
+    private final IndexFundReturnCalculator indexCalculator;
+
+    public ReturnsCalculationResponse calculateNps(ReturnsCalculationRequest request) {
+        return calculate(request, npsCalculator, true);
+    }
+
+    public ReturnsCalculationResponse calculateIndex(ReturnsCalculationRequest request) {
+        return calculate(request, indexCalculator, false);
+    }
+
+    private ReturnsCalculationResponse calculate(
             ReturnsCalculationRequest request,
-            InvestmentReturnsStrategy strategy,
+            InvestmentReturnCalculator calculator,
             boolean applyTaxBenefit
     ) {
 
@@ -37,7 +51,7 @@ public class ReturnsCalculationEngine {
                 .sum();
 
         List<PeriodReturns> periodResults = request.kPeriods().stream()
-                .map(period -> computePeriodReturn(period, request, strategy, years, applyTaxBenefit))
+                .map(period -> computePeriodReturn(period, request, calculator, years, applyTaxBenefit))
                 .toList();
 
         return new ReturnsCalculationResponse(totalAmount, totalCeiling, periodResults);
@@ -46,14 +60,14 @@ public class ReturnsCalculationEngine {
     private PeriodReturns computePeriodReturn(
             KPeriodRule period,
             ReturnsCalculationRequest request,
-            InvestmentReturnsStrategy strategy,
+            InvestmentReturnCalculator calculator,
             int years,
             boolean applyTaxBenefit
     ) {
 
         double invested = aggregationEngine.aggregateForPeriod(request.transactions(), period);
 
-        double futureValue = strategy.calculateFutureValue(invested, years);
+        double futureValue = calculator.calculateFutureValue(invested, years);
         double profit = futureValue - invested;
 
         double taxBenefit = 0;
