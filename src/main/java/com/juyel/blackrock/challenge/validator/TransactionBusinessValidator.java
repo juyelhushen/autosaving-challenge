@@ -2,6 +2,7 @@ package com.juyel.blackrock.challenge.validator;
 
 
 import com.juyel.blackrock.challenge.api.dto.TransactionResponse;
+import com.juyel.blackrock.challenge.infrastructure.exception.BusinessRuleException;
 import org.springframework.stereotype.Component;
 
 @Component
