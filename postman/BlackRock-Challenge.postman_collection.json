@@ -1,0 +1,124 @@
+{
+  "info": {
+    "name": "BlackRock Challenge API",
+    "_postman_id": "blk-challenge-collection",
+    "description": "Automated API tests for BlackRock Challenge",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+
+    {
+      "name": "Transactions - Parse",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/blackrock/challenge/v1/transactions:parse",
+          "host": ["{{baseUrl}}"],
+          "path": ["blackrock", "challenge", "v1", "transactions:parse"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "[{\"date\":\"2023-10-12T20:15:00\",\"amount\":1519}]"
+        }
+      }
+    },
+
+    {
+      "name": "Transactions - Validator",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/blackrock/challenge/v1/transactions:validator",
+          "host": ["{{baseUrl}}"],
+          "path": ["blackrock", "challenge", "v1", "transactions:validator"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"wage\": 50000, \"transactions\": [{\"date\":\"2023-10-12T20:15:00\",\"amount\":250,\"ceiling\":300,\"remanent\":50}]}"
+        }
+      }
+    },
+
+    {
+      "name": "Transactions - Filter",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/blackrock/challenge/v1/transactions:filter",
+          "host": ["{{baseUrl}}"],
+          "path": ["blackrock", "challenge", "v1", "transactions:filter"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"transactions\": [{\"date\":\"2023-07-10T10:00:00\",\"amount\":620,\"ceiling\":700,\"remanent\":80}], \"qPeriods\": [{\"fixed\":0,\"start\":\"2023-07-01T00:00:00\",\"end\":\"2023-07-31T23:59:59\"}], \"pPeriods\": [{\"extra\":25,\"start\":\"2023-07-01T00:00:00\",\"end\":\"2023-12-31T23:59:59\"}]}"
+        }
+      }
+    },
+
+    {
+      "name": "Returns - NPS",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/blackrock/challenge/v1/returns:nps",
+          "host": ["{{baseUrl}}"],
+          "path": ["blackrock", "challenge", "v1", "returns:nps"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"age\": 29, \"wage\": 50000, \"inflation\": 0.055, \"transactions\": [{\"date\":\"2023-10-12T20:15:00\",\"amount\":250,\"ceiling\":300,\"remanent\":50}], \"kPeriods\": [{\"start\":\"2023-01-01T00:00:00\",\"end\":\"2023-12-31T23:59:59\"}]}"
+        }
+      }
+    },
+
+    {
+      "name": "Returns - Index Fund",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "url": {
+          "raw": "{{baseUrl}}/blackrock/challenge/v1/returns:index",
+          "host": ["{{baseUrl}}"],
+          "path": ["blackrock", "challenge", "v1", "returns:index"]
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"age\": 29, \"wage\": 50000, \"inflation\": 0.055, \"transactions\": [{\"date\":\"2023-10-12T20:15:00\",\"amount\":250,\"ceiling\":300,\"remanent\":50}], \"kPeriods\": [{\"start\":\"2023-01-01T00:00:00\",\"end\":\"2023-12-31T23:59:59\"}]}"
+        }
+      }
+    },
+
+    {
+      "name": "Performance Metrics",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{baseUrl}}/blackrock/challenge/v1/performance",
+          "host": ["{{baseUrl}}"],
+          "path": ["blackrock", "challenge", "v1", "performance"]
+        }
+      }
+    }
+
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:5477"
+    }
+  ]
+}

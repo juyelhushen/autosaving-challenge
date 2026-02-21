@@ -2,7 +2,8 @@ spring:
   application:
     name: blackrock-auto-savings-challenge
 
-
+server:
+  port: 5477
 
 
 logging:
