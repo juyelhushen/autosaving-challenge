@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: blackrock-auto-savings-challenge
+
+
+
+
+logging:
+  #    file:
+  #      path: logs/
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} ${LOG_LEVEL_PATTERN:-%5p} %m%n"
+  #      file: "%d %-5level [%thread] %logger : %msg%n"
+  level:
+    web: error
+    root: info
+    sql: error
+
+springdoc:
+  swagger-ui:
+    display-request-duration: true
+    try-it-out-enabled: true
+    with-credentials: true
