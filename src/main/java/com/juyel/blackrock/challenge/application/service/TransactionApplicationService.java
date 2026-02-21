@@ -2,7 +2,7 @@ package com.juyel.blackrock.challenge.application.service;
 
 import com.juyel.blackrock.challenge.api.dto.ExpenseRequest;
 import com.juyel.blackrock.challenge.api.dto.TransactionResponse;
-import com.juyel.blackrock.challenge.computation.engine.TransactionComputationEngine;
+import com.juyel.blackrock.challenge.computation.temporal.engine.TransactionComputationEngine;
 import com.juyel.blackrock.challenge.validator.TransactionBusinessValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

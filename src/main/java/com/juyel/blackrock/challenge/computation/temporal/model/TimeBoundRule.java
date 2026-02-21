@@ -1,4 +1,4 @@
-package com.juyel.blackrock.challenge.computation.model;
+package com.juyel.blackrock.challenge.computation.temporal.model;
 
 import java.time.LocalDateTime;
 
