@@ -7,7 +7,6 @@ import com.juyel.blackrock.challenge.computation.returns.calculator.InvestmentRe
 import com.juyel.blackrock.challenge.computation.returns.calculator.NpsReturnCalculator;
 import com.juyel.blackrock.challenge.computation.returns.model.PeriodReturns;
 import com.juyel.blackrock.challenge.computation.returns.model.ReturnsCalculationResponse;
-import com.juyel.blackrock.challenge.computation.returns.strategy.InvestmentReturnsStrategy;
 import com.juyel.blackrock.challenge.computation.temporal.engine.KPeriodAggregationEngine;
 import com.juyel.blackrock.challenge.computation.temporal.model.KPeriodRule;
 import lombok.RequiredArgsConstructor;
