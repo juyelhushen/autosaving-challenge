@@ -19,9 +19,6 @@ public class PerformanceController {
 
         long start = System.nanoTime();
 
-        // Simulated lightweight processing (optional)
-        // In real scenario this could wrap a computation block
-
         return monitoringService.captureMetrics(start);
     }
 }
