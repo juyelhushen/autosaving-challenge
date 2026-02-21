@@ -3,6 +3,7 @@ package com.juyel.blackrock.challenge.api.controller;
 import com.juyel.blackrock.challenge.api.dto.TransactionsValidationRequest;
 import com.juyel.blackrock.challenge.api.dto.TransactionsValidationResponse;
 import com.juyel.blackrock.challenge.application.service.TransactionValidationApplicationService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,8 +18,9 @@ public class TransactionsValidatorController {
     private final TransactionValidationApplicationService validationService;
 
     @PostMapping("/transactions:validator")
-    public TransactionsValidationResponse validate(@RequestBody
-                                                       TransactionsValidationRequest request) {
+    public TransactionsValidationResponse validate(
+            @RequestBody @Valid TransactionsValidationRequest request
+    ) {
         return validationService.validate(request);
     }
 }

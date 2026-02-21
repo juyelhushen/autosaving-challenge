@@ -2,6 +2,7 @@ package com.juyel.blackrock.challenge.validation;
 
 import com.juyel.blackrock.challenge.api.dto.TransactionResponse;
 import com.juyel.blackrock.challenge.validator.DuplicateTransactionDetector;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -11,7 +12,12 @@ import static org.assertj.core.api.Assertions.*;
 
 class DuplicateTransactionDetectorTest {
 
-    private final DuplicateTransactionDetector detector = new DuplicateTransactionDetector();
+    private  DuplicateTransactionDetector detector;
+
+    @BeforeEach
+    void setUp() {
+        detector = new DuplicateTransactionDetector();
+    }
 
     @Test
     void shouldReturnFalseForUniqueTransactionDate() {

@@ -3,6 +3,7 @@ package com.juyel.blackrock.challenge.validation;
 import com.juyel.blackrock.challenge.api.dto.TransactionResponse;
 import com.juyel.blackrock.challenge.infrastructure.exception.BusinessRuleException;
 import com.juyel.blackrock.challenge.validator.TransactionIntegrityValidator;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
@@ -13,8 +14,12 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 class TransactionIntegrityValidatorTest {
 
 
-    private final TransactionIntegrityValidator validator
-            = new TransactionIntegrityValidator();
+    private TransactionIntegrityValidator validator;
+
+    @BeforeEach
+    void setUp() {
+        validator = new TransactionIntegrityValidator();
+    }
 
     @Test
     void shouldPassValidTransaction() {
